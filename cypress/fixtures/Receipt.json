@@ -1,0 +1,22 @@
+[
+{
+  "expensetype": "laundry",
+  "description": "Dry Wash",
+  "country": "India",
+  "cost": "500",
+  "paymenttype": "cash",
+  "vendor": "Hungry brid"
+
+},
+{
+  "expensetype": "Misc",
+  "description": "Office stationary",
+  "country": "India",
+  "cost": "800",
+  "paymenttype": "card",
+  "vendor": "Rodje wipes"
+
+}
+
+
+]
