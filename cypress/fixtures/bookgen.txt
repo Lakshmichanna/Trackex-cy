@@ -1,0 +1,95 @@
+{
+  "ResultIndex": "OB1",
+  "DBPersistUrl": "https:\/\/qa2.trackex.com:4089\/",
+  "IsLCC": true,
+  "TraceId": "7fa77b36-2ace-4bd1-9e5a-5042214a953b",
+  "GSTCompanyContactNumber": "4567899966",
+  "ServicerCode": "001",
+  "IsBaseCurrencyRequired": "true",
+  "TrackexBookingId": 309010,
+  "GSTCompanyAddress": "3rd Crass Road,1-45-25L,,Vijayawada,Andhra Pradesh,IN",
+  "TokenId": "93cf0734a43139e06e9c00676ec03681",
+  "AccessDetails": {
+    "Device": "Simulator iPhone16,2",
+    "UserId": "mngb@rz.in",
+    "Browser": "",
+    "AppType": "IOS",
+    "AppVersion": "1.2.9",
+    "CorporateName": "Stalin Corporate ASA",
+    "OsVersion": "17.2"
+  },
+  "GSTCompanyEmail": "stalin@corp.in",
+  "XAuthorization": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtbmdiQHJ6LmluJX5-JXRyYWNrZXhfc3RhbGluY29ycG9yYXRlXzM1MCIsImlzcyI6Im1zcmNvc21vcyIsImlhdCI6MTcwNTU3Mzg5OCwiZXhwIjoxNzA4MTY1ODk4fQ.2O2An5t4hVEFlnzvxf0SNNU4LfBy8JW_lKAoN6NfFRAeyfklMumyq1UQfJ19ajLpVXbXQbKsnRYqHKMEKTooZg",
+  "PaymentMode": {
+    "Name": "",
+    "VendorCode": "",
+    "ExpiryDate": "",
+    "Number": "",
+    "CardSecurityCode": ""
+  },
+  "PreferredCurrency": "INR",
+  "GSTCompanyName": "Stalin Corporate ASA",
+  "BookingDateTime": "2024-01-18T16:04:27",
+  "ConvenienceFee": 200,
+  "XAuthorizationUser": "mngb@rz.in",
+  "Ismulti": "false",
+  "JourneyType": "1",
+  "EndUserIp": "183.82.119.151",
+  "GSTNumber": "",
+  "AirlineCode": "6E",
+  "Passengers": [
+    {
+      "MiddleName": "",
+      "Title": "MR",
+      "ContactNo": "8686888888",
+      "Fare": {
+        "Tax": 924,
+        "AdditionalTxnFeeOfrd": 0,
+        "BaseFare": 3646,
+        "TransactionFee": 0,
+        "YQTax": 0,
+        "AirTransFee": 0,
+        "AdditionalTxnFeePub": 0
+      },
+      "PaxType": 1,
+      "MealDynamic": [
+        {
+          "Origin": "MAA",
+          "WayType": 2,
+          "Code": "CCWT",
+          "AirlineCode": "6E",
+          "Currency": "INR",
+          "Destination": "DEL",
+          "AirlineDescription": "UNIBIC CHOCOLATE CHIPS COOKIES - 50 GM",
+          "Quantity": 1,
+          "Price": 150,
+          "FlightNumber": "6815",
+          "Description": 2
+        }
+      ],
+      "KnownTravellerId": "",
+      "LastName": "bsat",
+      "CountryName": "United States",
+      "Gender": "1",
+      "PassportNo": "",
+      "FirstName": "magerb",
+      "IsLeadPax": true,
+      "CountryCode": "US",
+      "Email": "pavankvch@gmail.com",
+      "PassportExpiry": "",
+      "Phone": "8686888888",
+      "IsdCode": "+93",
+      "Baggage": [
+        {
+          "Destination": "Delhi",
+          "Origin": "Chennai"
+        }
+      ],
+      "Seat": [
+        
+      ],
+      "DateOfBirth": "1996-02-12T00:00:00"
+    }
+  ],
+  "MultiTicketIndicator": "IND"
+}

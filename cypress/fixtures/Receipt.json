@@ -1,21 +1,43 @@
 [
 {
-  "expensetype": "laundry",
-  "description": "Dry Wash",
+  "expensetype": "Lunch",
+  "description": "Team luch",
   "country": "India",
-  "cost": "500",
-  "paymenttype": "cash",
-  "vendor": "Hungry brid"
+  "cost": "1200",
+  "paymenttype": "cash"
+  
 
 },
 {
-  "expensetype": "Misc",
-  "description": "Office stationary",
+  "expensetype": "Fuel",
+  "description": " stationary",
   "country": "India",
   "cost": "800",
-  "paymenttype": "card",
-  "vendor": "Rodje wipes"
-
+  "paymenttype": "card"
+  
+},{
+  "expensetype": "Car",
+  "description": "Office",
+  "country": "India",
+  "cost": "4500",
+  "paymenttype": "card"
+  
+},
+{
+  "expensetype": "telephone",
+  "description": "Office phone",
+  "country": "India",
+  "cost": "299",
+  "paymenttype": "card"
+  
+},
+{
+  "expensetype": "Visa",
+  "description": "Festival ",
+  "country": "India",
+  "cost": "1200",
+  "paymenttype": "card"
+  
 }
 
 

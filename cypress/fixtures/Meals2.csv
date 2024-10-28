@@ -1,0 +1,3 @@
+Userid,PersonName,ExpensDate,Amount,Description,Vendor,Location,ExpenseType,PaymentMode
+emp@d.com,Client Bon,2024-02-07,300,Breakfast desc,Vendor Bom,Had,Breakfast,CARD
+emp@d.com,Client Bon,2024-02-07,400,Dinner desc,Vendor DDon,Had,Dinner,CARD

@@ -6,11 +6,14 @@ class Loginpage{
     loginbutton  ='.btn.btn-brand.btn-elevate.btn-block';
     override = '#swal2-title'
     popupOk = '.swal2-confirm'
+    profilename = '.kt-header__topbar-username'
+    logoutmenu = '.btn.btn-label-brand.btn-sm.btn-bold'
     
     // Prevents Cypress from failing on non-2xx status codes
     
     launch(){
         cy.viewport(1280, 720)
+        //https://qacorporate.trackex.com:8082/trackexb2e-v4/login
         cy.visit('https://qacorporate.trackex.com:8082/trackexb2e-v4/login', { failOnStatusCode: false })
         cy.title().should('contains','Track')
         cy.log('Successfully launched the Application')
@@ -38,6 +41,14 @@ class Loginpage{
           cy.log('No popup found, proceeding without override.');
         }
       });
+    }
+
+    logout(){
+      cy.wait(2000)
+      cy.get(this.profilename).click()
+      cy.wait(1000)
+      cy.get(this.logoutmenu).should('be.visible').click()
+
     }
     }
     export default Loginpage;
