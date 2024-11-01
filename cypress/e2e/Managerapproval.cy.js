@@ -1,13 +1,14 @@
-import Loginpage from './Pages/Loginpage';
-import Flightpage from './Pages/Flightpage'
-import Approvalspage from './Pages/Approvalspage'
+import Loginpage from './Pages/Loginpage'
+import Receiptpage from './Pages/Receiptpage';
+import Expensepage from './Pages/Expensepage'
+
 
 
 describe('Trip Approval', () => {
 
   const lp = new Loginpage()
-  const fp = new Flightpage()
-  const ap = new Approvalspage()
+  const rp = new Receiptpage();
+  const ep = new Expensepage()
 
   it('managerapproval',()=>{
 
@@ -16,12 +17,17 @@ describe('Trip Approval', () => {
         lp.launch()
         lp.login(approval.mngmail, approval.password)
         lp.popupoverride()
-        ap.approvetrips(approval.tripstatus)
-        
-      })
-
-     
-
+        ep.addexpense()
+        cy.fixture('Expense').then((rec) => {
+          
+        ep.basicreceipt(rec.expensetype,rec.description,rec.country,rec.cost,rec.paymenttype,rec.vendor)
+        cy.fixture('Templatefields').then((fields)=>{
+          ep.templatefields(fields.vendor,fields.location,fields.items)
+        })
+        ep.recepitlist()
+    })
+  
+  })
 
   })
 
