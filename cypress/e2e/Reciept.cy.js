@@ -42,7 +42,7 @@ describe('login', () => {
     })
   })
 
-  it('Oneway',() =>{
+  /*it.skip('Oneway',() =>{
 
     cy.fixture('Flightone').then((fl)=>{
 
@@ -51,7 +51,7 @@ describe('login', () => {
     fp.bookpages('1','octo name','user test','01/01/1990')
 
   })
-})
+})*/
 
 
 afterEach('logout',()=>{

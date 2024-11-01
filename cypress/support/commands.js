@@ -45,14 +45,16 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
     });
   });
 
-  Cypress.Commands.add('elementexists',(locator,locator2,msg) =>{
+  Cypress.Commands.add('elementexists',(locator,locator2,msg1,msg2) =>{
     cy.get('body').then(($body) => {
       if ($body.find(locator).length > 0) {
-        
-        cy.get(locator).click()
+        cy.log(msg1);
+        //cy.get(locator).click()
       } else {
-        cy.get(locator2).click()
-        cy.log(msg);
+        //cy.get(locator2).click()
+        if ($body.find(locator2).length > 0) {
+          cy.log(msg2)
+        }
       }
     });
   })

@@ -5,7 +5,11 @@ class Receiptpage {
   myexpense = 'My Expenses'
   approvemenu ='Approve Expenses'
   btnmanuallyadd = ' Manually Add '
-  expensetype = "input[role='combobox']"
+  btnaddexpense = '.btn.btn-brand.btn-md.kt-font-bold'
+  tripname ='#labelForTripName > .ng-select-container > .ng-value-container > .ng-input > input'
+  tripnameselection = ' No Trip Involved '
+  manualybtn = '.btn.btn-outline-brand.btn-elevate.btn-pill.btn-sm.mr-2.font-weight-medium'
+  typeofexpense = "//ng-select[@id='labelForExpenseType']//input[@role='combobox']"
   desc = '#labelForDescription'
   expensedate = '#kt_datepicker_1'
   selectdate = '.ngb-dp-today > .btn-light'
@@ -22,19 +26,24 @@ class Receiptpage {
   file = '#multiFiles'
 
 
+  
+
+
 
   addreceipt() {
     // cy.wait(5000)
-    cy.get(this.requestwidget).should('be.visible')
+    cy.get(this.requestwidget,{timeout:40000}).should('be.visible')
     cy.get(this.requestwidget).click({ force: true })
     // My request - Force click of hidden element 
     cy.contains(this.myreceipt).click({ force: true })
-    cy.contains(this.btnmanuallyadd).click({ force: true })
+   
 
   }
 
   basicreceipt(expensetype, description, country, cost, paymenttype) {
-    cy.get(this.expensetype).type(expensetype).type("{enter}")
+    cy.contains(this.btnmanuallyadd).click({ force: true })
+
+    cy.xpath(this.typeofexpense).type(expensetype).type("{enter}")
 
     cy.get(this.desc).type(description)
     //click date picker
@@ -112,12 +121,6 @@ class Receiptpage {
     cy.get(this.addreceiptbtn).click()
 
   }
-
-  addexpense(){
-
-
-  }
-
 
 }
 export default Receiptpage;

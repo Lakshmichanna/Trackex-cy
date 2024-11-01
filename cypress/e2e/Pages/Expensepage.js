@@ -43,7 +43,7 @@ class Expensepage {
         //Loading the first 2 receipts from receipt list
         cy.get('body').then($toggleList => {
             if ($toggleList.find('.toggleListData .row.align-content-center').length>1) {
-              cy.log($toggleList.length)
+              cy.log("receipt count :" +$toggleList.length)
                 // If present, click on the checkboxes of the first two records
                 cy.get('.toggleListData .row.align-content-center') // Select rows within toggleListData
                     .eq(0) // First record
@@ -67,6 +67,7 @@ class Expensepage {
         cy.get(this.draftexpclick).click()
         cy.wait(1000)
         cy.get(this.expsubmitbtn).click()
+        cy.wait(1000)
        /* cy.get('[data-notify="message"]',{ timeout: 4000 }).then($msg =>{
           if($msg.length>0){
             
@@ -127,7 +128,7 @@ class Expensepage {
     // Second function - Access value from alias
     cy.get('@recptype').then((exptype) => {
       let type = exptype.toLocaleLowerCase();
-      cy.log(type)
+      cy.log(exptype)
       switch (type) {
         // General & vendor template receipts
         case 'car': // Enter the vendor and default selecting Fromdate & Todate field with expense date
@@ -148,7 +149,7 @@ class Expensepage {
       // Meals template receipts
         case 'gifts':
         case 'lunch':
-        case 'visafee':
+        case 'visa fee':
         case 'dinner':
         case 'entertainment':
 

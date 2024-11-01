@@ -13,6 +13,7 @@ class Loginpage{
     
     launch(){
         cy.viewport(1280, 720)
+        //https://app.trackex.com/login
         //https://qacorporate.trackex.com:8082/trackexb2e-v4/login
         cy.visit('https://qacorporate.trackex.com:8082/trackexb2e-v4/login', { failOnStatusCode: false })
         cy.title().should('contains','Track')

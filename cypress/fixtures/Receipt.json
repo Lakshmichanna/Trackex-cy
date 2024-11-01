@@ -1,6 +1,6 @@
 [
 {
-  "expensetype": "Lunch",
+  "expensetype": "Dinner",
   "description": "Team luch",
   "country": "India",
   "cost": "1200",
@@ -24,7 +24,7 @@
   
 },
 {
-  "expensetype": "telephone",
+  "expensetype": "Laundry",
   "description": "Office phone",
   "country": "India",
   "cost": "299",
@@ -32,7 +32,7 @@
   
 },
 {
-  "expensetype": "Visa",
+  "expensetype": "Telephone",
   "description": "Festival ",
   "country": "India",
   "cost": "1200",
