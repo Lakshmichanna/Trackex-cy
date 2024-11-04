@@ -1,5 +1,5 @@
 class Expensepage {
-
+  
 
     requestwidget = '#REQUESTS'
     myreceipt = 'My Receipts'
@@ -35,6 +35,10 @@ class Expensepage {
     draftexpclick = '.active > .kt-portlet > .kt-portlet__body > :nth-child(1)'
     expsubmitbtn = '.col-12.mb-3 > .btn-brand'
     mandatorymissing = "div[class='col-4'] div"
+    getexpenseid = '.row.m-0.align-items-center.py-2.toggle-bg .col-claimID .kt-label-font-color-3.font-weight-bold'
+   toastmsg = '[data-notify="message"]'
+
+
 
 
     recepitlist(){
@@ -68,18 +72,23 @@ class Expensepage {
         cy.wait(1000)
         cy.get(this.expsubmitbtn).click()
         cy.wait(1000)
-       /* cy.get('[data-notify="message"]',{ timeout: 4000 }).then($msg =>{
-          if($msg.length>0){
-            
-          cy.log('Expense Submitted Successfully')
-          }
-          else{
-            cy.singleelement(this.mandatorymissing,'Some mandatory fields are missing','Something went wrong in Expense submit')
-          }
-        })*/
-
-        cy.elementexists('[data-notify="message"]',this.mandatorymissing,'Expense Submitted Successfully','Some mandatory fields are missing in receipts')
-
+        cy.get('body').then($msg => {
+          //cy.get('[data-notify="message"]',{ timeout: 4000 }).then($msg =>{
+             if($msg.find('[data-notify="message"]',{ timeout: 4000 }).length>0){
+               cy.wait(1000)
+               cy.storevalue(this.getexpenseid,'Expense-ID' )
+             //cy.wrap(true).as(expsavestatus)
+              
+             }
+             else{
+               cy.log('Something went wrong in storing the expense id')
+              
+             }
+           })
+          
+        // Checking expense is submitted or not
+        cy.elementexists(this.toastmsg,this.mandatorymissing,'Expense Submitted Successfully','Some mandatory fields are missing in receipts')
+        
     }
   
     addexpense(){

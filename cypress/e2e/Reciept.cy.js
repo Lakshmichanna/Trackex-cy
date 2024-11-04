@@ -42,18 +42,7 @@ describe('login', () => {
     })
   })
 
-  /*it.skip('Oneway',() =>{
-
-    cy.fixture('Flightone').then((fl)=>{
-
-    fp.flightsearch(fl.originairport,fl.destinationairport,fl.journeydate,'1') 
-    fp.resultpage()
-    fp.bookpages('1','octo name','user test','01/01/1990')
-
-  })
-})*/
-
-
+  
 afterEach('logout',()=>{
 
   lp.logout()

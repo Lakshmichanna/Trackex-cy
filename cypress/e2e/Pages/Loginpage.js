@@ -48,7 +48,7 @@ class Loginpage{
       cy.wait(2000)
       cy.get(this.profilename).click()
       cy.wait(1000)
-      cy.get(this.logoutmenu).should('be.visible').click()
+      cy.contains('Sign Out').should('be.visible').click()
 
     }
     }

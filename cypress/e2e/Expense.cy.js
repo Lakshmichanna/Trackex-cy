@@ -1,16 +1,22 @@
 import Loginpage from './Pages/Loginpage'
-import Receiptpage from './Pages/Receiptpage';
+import Receiptpage from './Pages/Receiptpage'
 import Expensepage from './Pages/Expensepage'
+import Approvalspage from './Pages/Approvalspage'
 
 
 
-describe('Trip Approval', () => {
+describe('Expense Submit', () => {
 
   const lp = new Loginpage()
-  const rp = new Receiptpage();
+  const rp = new Receiptpage()
   const ep = new Expensepage()
+  const ap = new Approvalspage()
 
-  it('managerapproval',()=>{
+
+
+
+  
+  it('Expense Submit with receipt list & manuall add',()=>{
 
     cy.fixture('Login').then((approval) => {
 
@@ -25,10 +31,12 @@ describe('Trip Approval', () => {
           ep.templatefields(fields.vendor,fields.location,fields.items)
         })
         ep.recepitlist()
+        
     })
-  
+    
   })
 
   })
+
 
 })

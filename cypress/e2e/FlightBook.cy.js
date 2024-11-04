@@ -2,7 +2,7 @@ import Loginpage from './Pages/Loginpage';
 import Flightpage from './Pages/Flightpage'
 
 
-describe('login', () => {
+describe('Flight 003 or 004 Bookings', () => {
 
   const lp = new Loginpage();
   const fp = new Flightpage();
@@ -30,7 +30,7 @@ describe('login', () => {
   })
 })
 
-  it.skip('RoundTripBooking',() =>{
+  it.skip('RoundTrip',() =>{
 
     cy.fixture('RoundTrip').then((rd)=>{
 

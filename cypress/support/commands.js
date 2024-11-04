@@ -49,6 +49,7 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
     cy.get('body').then(($body) => {
       if ($body.find(locator).length > 0) {
         cy.log(msg1);
+
         //cy.get(locator).click()
       } else {
         //cy.get(locator2).click()
@@ -78,6 +79,18 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
     cy.log( + ele.text())
     return ele.text()
 })
+  })
+
+  // Getting the value and storing in the environment variables 
+
+  Cypress.Commands.add ('storevalue',(locator,valuename)=>{
+    cy.get(locator).eq(0).then($field => {
+    const id = $field.text(); // Get the value of the input field
+    
+        cy.log(valuename +"-" + id)
+        Cypress.env(valuename, id); 
+
+    })
   })
 // Attach file command with parameters
 /* fileName: The name of the file to upload.

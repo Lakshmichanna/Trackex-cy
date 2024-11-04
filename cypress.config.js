@@ -24,6 +24,9 @@ module.exports = defineConfig({
     video: true,  // Optionally enable video recording as well
   },
 })
+
+
+
 module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
