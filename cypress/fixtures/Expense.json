@@ -1,9 +1,12 @@
-{
-"expensetype": "Car",
-"description": "Trip",
-"country": "united states",
-"cost": "35",
-"paymenttype": "cash"
 
+ 
+ {
 
-}
+      "expensetype": "Dinner",
+      "description": "Team luch",
+      "country": "India",
+      "cost": "1200",
+      "paymenttype": "cash"
+      
+    
+    }

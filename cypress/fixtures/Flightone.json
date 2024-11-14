@@ -1,7 +1,10 @@
 {
 
-    "originairport": "las",
-    "destinationairport": "lax",
-    "journeydate" : "20"
+    "originairport": "lax",
+    "destinationairport": "sea",
+    "journeydate" : "20",
+    "email": "mng@cl.com",
+    "password": "Msr@123",
+    "service": "USD" 
 
 }

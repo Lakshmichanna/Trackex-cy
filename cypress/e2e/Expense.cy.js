@@ -25,17 +25,18 @@ describe('Expense Submit', () => {
         lp.popupoverride()
         ep.addexpense()
         cy.fixture('Expense').then((rec) => {
-          
+        
         ep.basicreceipt(rec.expensetype,rec.description,rec.country,rec.cost,rec.paymenttype,rec.vendor)
         cy.fixture('Templatefields').then((fields)=>{
           ep.templatefields(fields.vendor,fields.location,fields.items)
         })
+    
         ep.recepitlist()
         
     })
     
   })
-
+    
   })
 
 

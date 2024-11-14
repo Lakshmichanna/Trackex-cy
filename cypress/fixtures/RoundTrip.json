@@ -2,5 +2,8 @@
     "originairport": "las",
     "destinationairport": "lax",
     "journeydate" : "20",
-    "journeydate1": "25"
+    "journeydate1": "25",
+    "email": "mng@cl.com",
+    "password": "Msr@123",
+    "service": "USD" 
 }

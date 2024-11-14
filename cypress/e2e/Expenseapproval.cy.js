@@ -11,23 +11,13 @@ describe('Expense Submit', () => {
     const rp = new Receiptpage()
     const ep = new Expensepage()
     const ap = new Approvalspage()
-    var isExpenseSubmitted;
-
-
-    beforeEach('Employee login', () => {
-        // Getting the fixture file data into function 
-        cy.fixture('Tripapproval').then((logindata) => {
-
-            lp.launch()
-            lp.login(logindata.empmail, logindata.password)
-            lp.popupoverride()
-
-        })
-    })
+    var isExpenseSubmitted, isexpensesttled ;
 
 
     it('Expense Submit with receipt list & manuall add', () => {
-      
+        cy.fixture('Expenseapproval').then((logindata) => {
+            lp.userlogin(logindata.empmail, logindata.password)
+        })
         ep.addexpense()
         cy.fixture('Expense').then((rec) => {
 
@@ -36,40 +26,65 @@ describe('Expense Submit', () => {
                 ep.templatefields(fields.vendor, fields.location, fields.items)
             })
             ep.recepitlist()
+            //checking the expense is submitted or not
             cy.elementIsPresent(ep.toastmsg).then((isPresent) => {
                 if (isPresent) {
-                  cy.log('Manager appoval is required')
-                  isExpenseSubmitted = true
+                    cy.log('Manager appoval is required')
+                    isExpenseSubmitted = true
                 } else {
-                  cy.log('Skipped manager approval')
-                  
-                 }
-                })
+                    cy.log('Skipped manager approval')
+
+                }
+            })
         })
         lp.logout()
 
     })
 
 
-    afterEach('Manager Approval', () => {
-        if (isExpenseSubmitted===true) {
-            cy.fixture('Tripapproval').then((logindata) => {
+    it('Manager Approval', () => {
+        if (isExpenseSubmitted === true) {
+            cy.fixture('Expenseapproval').then((logindata) => {
 
                 lp.launch()
                 lp.login(logindata.mngmail, logindata.password)
                 lp.popupoverride()
-                ap.approveexpense('Approve')
+                ap.approveexpense(logindata.expstatus)
+                //checking the expense is submitted or not 
+            cy.elementIsPresent(ep.toastmsg).then((isPresent) => {
+                if (isPresent && logindata.expstatus.toLowerCase() == 'approve') {
+                    cy.log('Accountant settlement is required')
+                    isexpensesttled = true
+                } else {
+                    cy.log('Skipped Accountant settlement')
+
+                }
+            })
 
                 lp.logout()
 
-           
-                 })
-                }
-                else{
-                    cy.log('Skipping Manager approval as expense is not submitted ')
-                }
+            })
+        }
+        else {
+            cy.log('Skipping Manager approval as expense is not submitted ')
+        }
+    })
+
+    it('Accountant Approval', () => {
+        if (isexpensesttled === true) {
+            cy.fixture('Expenseapproval').then((logindata) => {
+
+                lp.launch()
+                lp.login(logindata.accmail, logindata.password)
+                lp.popupoverride()
+                ap.settlement(logindata.settlestatus)
+            
+                lp.logout()
+            
         })
+    }else{
+        cy.log(' Skipping Accountant settlement as expenses is rejected by manager')
+    }
 
-
-
+})
 })

@@ -11,9 +11,9 @@ class Flightpage {
     onewaydate = "input[placeholder='Departing']"
     roundtripdate = "input[placeholder='Departing – Returning']"
     nextmonth = "button[title='Next month']"
-    journeydate = 'ngb-datepicker .ngb-dp-day' 
+    journeydate = 'ngb-datepicker .ngb-dp-day'
     returndate = '.ngb-dp-day'
-    travelerfield = "a[role='button']" 
+    travelerfield = "a[role='button']"
     traveler2 = "div[class='adults pb-3'] button:nth-child(2)"
     searchbtn = 'Search'
     tripselect = ':nth-child(2) > .kt-portlet > .kt-portlet__body > :nth-child(1) > .col-sm-8 > .float-left > :nth-child(1) > .col-md-10 > .row'
@@ -47,13 +47,23 @@ class Flightpage {
     popupok = '.swal2-confirm'
     gettripid = "h4[class='kt-portlet__head-title'] span span[class='kt-font-primary d-sm-inline-block d-block']"
     approvaltripid = "(//p[contains(text(),'ID No.')])[1]//preceding-sibling::span"
-
+       
+   
     bookpages(traveler, firstname, lastname, dob) {
         //reveiw page
         cy.get(this.reason).type('Booking')
         cy.get(this.reviewnxtbtn).click()
         //traveler page
-        cy.get(this.travelernxtbtn, { timeout: 50000 }).should('be.visible')
+        // fraequote failed pop up
+        cy.get(this.travelernxtbtn, { timeout: 50000 })
+        cy.get('body').then((popup)=>{
+            if(popup.find('.swal2-popup',{ timeout: 50000 }).length>0){
+                cy.log(cy.get('#swal2-title').text())
+                cy.get('.swal2-confirm').click()
+            }
+
+        })
+      
         if (traveler > 1) {
             this.travelersdetails(firstname, lastname, dob)
         }
@@ -62,7 +72,10 @@ class Flightpage {
         cy.wait(2000)
         cy.get(this.detailspopup).click({ force: true })
         // payment page 
-        cy.get(this.wallettab).click()
+       // cy.get(this.wallettab).click()
+        cy.contains('TrackEx Corporate Wallet').click()
+        cy.storevalue('div.pay_amountinfo span:nth-of-type(2)','amount')
+    
         // payment throught wallet
         if (cy.get(this.balancecheck).should('have.text', 'Balance is available')) {
             cy.get(this.walletbtn).click()
@@ -83,20 +96,25 @@ class Flightpage {
         cy.log('Loading .......');
 
         cy.get('body').then(($body) => {
-            if ($body.find('.alert-icon > .la').length>0) { // If trip ID is found
+            if ($body.find('.alert-icon > .la').length > 0) { // If trip ID is found
                 cy.log('Trip ID found:');
-                cy.get(this.gettripid, { timeout:10000 }).should('be.visible').then((trip) => {
+                cy.get(this.gettripid, { timeout: 10000 }).should('be.visible').then((trip) => {
                     cy.log('Trip id is - ' + trip.text());
-                })
-            
+                    cy.get("app-flight-confirmation[class='ng-star-inserted'] span:nth-child(3)").invoke('text').then((ticketamount) => {
+                        cy.log('Amount in ticket' + ticketamount)
+                        const paymentamount = Cypress.env('amount')
+                        expect(ticketamount).to.equal(paymentamount)
+});
+                    })
+
             } else {
                 // If no trip ID is found, check for the popup
                 cy.get('body').then(($popup) => {
-                         // Click the "OK" button if it's present
-                        if ($popup.find(this.popup).length > 0) {
-                            cy.log('Clicking OK button.');
-                            cy.get(this.popupok).click();
-                    
+                    // Click the "OK" button if it's present
+                    if ($popup.find(this.popup).length > 0) {
+                        cy.log('Clicking OK button.')
+                        cy.get(this.popupok).click()
+
                         // Optionally log the popup message
                         cy.get('#swal2-content').invoke('text').then((popupMessage) => {
                             cy.log(`Popup Message: ${popupMessage}`);
@@ -168,7 +186,7 @@ class Flightpage {
 
     }
 
-    resultpage() {
+    resultpage(service) {
 
         // Checking the flight loading message 
         cy.elementIsPresent(this.loading).then((isPresent) => {
@@ -182,7 +200,7 @@ class Flightpage {
 
         // Checking the error message if results are failed
 
-        cy.get(this.failmsg, { timeout: 5000 }).then(($fail) => {
+        cy.get(this.failmsg, { timeout: 30000 }).then(($fail) => {
             if ($fail > 0) {
                 cy.log('Results are failed with error')
                 cy.screenshot()
@@ -192,12 +210,25 @@ class Flightpage {
             }
         })
         // Waiting for the element to be visible
-        cy.get(this.results, { timeout: 60000 }).should('be.visible')
-        cy.wait(2000)
-        cy.get(this.select).click({ force: true })
-        cy.wait(2000)
-        //upgrade option selecting if display
-        cy.singleelement(this.grade2, 'selecting the 2nd upgrade option', 'No upgrade options displayed to select')
+        if (service == 'USD') {
+            cy.get(this.results, { timeout: 60000 }).should('be.visible')
+            cy.wait(2000)
+
+            cy.get(this.select).click({ force: true })
+            cy.wait(2000)
+            //upgrade option selecting if display
+            cy.singleelement(this.grade2, 'selecting the 2nd upgrade option', 'No upgrade options displayed to select')
+        }
+        else if (service == 'IND') {
+            cy.get('#Flightlists', { timeout: 60000 }).should('be.visible')
+            cy.wait(2000)
+            cy.get('input.customIcon[type="radio"]').eq(0).click()
+            cy.get('.price-btn > .btn').click({force:true})
+
+        }
+        else {
+            cy.log('Invalid service of flight')
+        }
         // below is the code replaced with above one line code  
         /*  cy.get('body').then(($body) => {
               if ($body.find(this.grade2).length > 0) {
@@ -235,13 +266,13 @@ class Flightpage {
     }
 
 
-    roundtripsearch(originairport,destinationairport,journeydate,journeydate1,traveler) {
+    roundtripsearch(originairport, destinationairport, journeydate, journeydate1, traveler) {
         cy.get(this.bookyourtrip).click()
         // Flight search fields
         //cy.get(this.origin).should('be.visible')
         cy.wait(1000)
         cy.get(this.destination).click()
-        cy.xpath(this.roundtype).click({force: true})
+        cy.xpath(this.roundtype).click({ force: true })
         cy.wait(1000)
         cy.get(this.origin).type(originairport), { parseSpecialCharSequences: false }
         cy.get(this.orgselect).click()
@@ -266,7 +297,7 @@ class Flightpage {
         cy.contains(this.searchbtn).click()
     }
 
-    sendapproval(originairport, destinationairport, journeydate, traveler){
+    sendapproval(originairport, destinationairport, journeydate, traveler) {
         this.flightsearch(originairport, destinationairport, journeydate, traveler)
         cy.elementIsPresent(this.loading).then((isPresent) => {
             if (isPresent) {
@@ -292,23 +323,23 @@ class Flightpage {
         cy.get(this.results, { timeout: 60000 }).should('be.visible')
         cy.wait(2000)
         //selecting the trip in results & click on send for approval
-        cy.get(this.tripselect,{timeout: 5000}).click()
+        cy.get(this.tripselect, { timeout: 5000 }).click()
         cy.wait(2000)
         cy.get(this.sendforapproval).click()
         cy.wait(5000)
         cy.get('#Home').click()
         // get the trip id from the activities table
-       cy.xpath(this.approvaltripid).then($field => {
-        const id = $field.text(); // Get the value of the input field
-        
-            cy.log('Tripid:'+id)
-            Cypress.env('Tripapprovalid', id); // Set the value in Cypress.env
-          
-    })
-    
+        cy.xpath(this.approvaltripid).then($field => {
+            const id = $field.text(); // Get the value of the input field
 
-   
-       
+            cy.log('Tripid:' + id)
+            Cypress.env('Tripapprovalid', id); // Set the value in Cypress.env
+
+        })
+
+
+
+
     }
 }
 export default Flightpage;

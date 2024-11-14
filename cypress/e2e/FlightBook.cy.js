@@ -10,32 +10,32 @@ describe('Flight 003 or 004 Bookings', () => {
 
   beforeEach('passes', () => {
     // Getting the fixture file data into function 
-    cy.fixture('Login').then((logindata) => {
+    cy.fixture('Flightone').then((fl) => {
 
       lp.launch()
-      lp.login(logindata.email, logindata.password)
+      lp.login(fl.email, fl.password)
       lp.popupoverride()
 
     })
   })
 
-  it('Oneway',() =>{
+  it.skip('Oneway',() =>{
 
     cy.fixture('Flightone').then((fl)=>{
 
     fp.flightsearch(fl.originairport,fl.destinationairport,fl.journeydate,'1') 
-    fp.resultpage()
+    fp.resultpage(fl.service)
     fp.bookpages('1','octo name','user test','01/01/1990')
 
   })
 })
 
-  it.skip('RoundTrip',() =>{
+  it('RoundTrip',() =>{
 
     cy.fixture('RoundTrip').then((rd)=>{
 
     fp.roundtripsearch(rd.originairport,rd.destinationairport,rd.journeydate,rd.journeydate1,'1') 
-    fp.resultpage()
+    fp.resultpage(rd.service)
     fp.bookpages('1','octo name','user test','01/01/1990')
 
   })

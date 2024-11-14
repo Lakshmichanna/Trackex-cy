@@ -22,8 +22,9 @@ class Expensepage {
     submit = '#addExpense_notify_btn'
     location = '#kt_typeahead_vl'
     loc ="//input[@id='kt_typeahead_location']"
-    items = '#kt_typeahead_nofpersons'
+    items = '#labelForNoOfItems'
     persons = '#kt_typeahead_nofpersons'
+    
     addreceiptbtn = '#addExpense_notify_btn'
     file = '#multiFiles'
     reclist =' Receipts List '
@@ -71,11 +72,11 @@ class Expensepage {
         cy.get(this.draftexpclick).click()
         cy.wait(1000)
         cy.get(this.expsubmitbtn).click()
-        cy.wait(1000)
+        cy.wait(5000)
         cy.get('body').then($msg => {
           //cy.get('[data-notify="message"]',{ timeout: 4000 }).then($msg =>{
-             if($msg.find('[data-notify="message"]',{ timeout: 4000 }).length>0){
-               cy.wait(1000)
+             if($msg.find('[data-notify="message"]',{ timeout: 10000 }).length>0){
+               cy.get(this.getexpenseid,{ timeout: 20000})
                cy.storevalue(this.getexpenseid,'Expense-ID' )
              //cy.wrap(true).as(expsavestatus)
               
@@ -106,9 +107,10 @@ class Expensepage {
   
 
     basicreceipt(expensetype, description, country, cost, paymenttype) {
-        
+      
         cy.get(this.btnmanuallyadd).should('be.visible').click({ force: true })
        // cy.intercept('GET', '/trackexb2e-api/claims/expenses/corporate/1478').as('getData');
+       cy.log('type' + expensetype)
         cy.xpath(this.typeofexpense).click({ force: true }).type(expensetype).type("{enter}")
         cy.get(this.desc).type(description)
         //click date picker
@@ -172,6 +174,7 @@ class Expensepage {
           break;
        // No.of items template receipts   
         case 'equipment':
+          cy.wait(1000)
           // Enter the No.of items field
           cy.get(this.items).type(items)
           cy.get(this.file).attachFile('ticket.pdf')

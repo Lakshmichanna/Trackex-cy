@@ -21,12 +21,15 @@ class Approvalspage {
   requestwidget = '#REQUESTS'
   approveexp = 'Approve Expenses'
   searchicon = '.kt-header__topbar-wrapper .kt-header__topbar-icon svg'
-  inutsearch = "input[placeholder='Search...']"
+  inputsearch = "input[placeholder='Search...']"
   noexprecords = '.row.align-items-center.py-2.toggle-bg'
   expremarks = '#labelForApprovalMarks'
   expapprove = '.btn-brand'
   expreject = '.btn-outline-danger'
   expnotificationclose = '.alert > .close'
+  settlementremarks ='#idForSettlement'
+  settlementapprove= "button[data-ktwizard-type='action-next']"
+  settlementreject = "button[class='btn btn-md kt-font-bold btn-outline-danger mx-1']"
 
 
 
@@ -62,7 +65,7 @@ class Approvalspage {
       cy.get(this.requestwidget).click().wait(500).get('div.kt-menu__submenu').contains('Approve Expenses').should('be.visible').click()
       cy.get(this.searchicon).eq(0).click()
       //Getting the value from one class which is stored in env variable
-      const storeexpid = Cypress.env('Expense-ID');
+      const storeexpid = Cypress.env('Expense-ID')
 
       cy.get(this.searchinput).type(storeexpid)
 
@@ -85,12 +88,43 @@ class Approvalspage {
         cy.get(this.expreject).click()
       }
       else {
-        cy.log('Invalid trip status')
+        cy.log('Invalid expense status')
       }
       cy.get(this.expnotificationclose, { timeout: 5000 }).click()
     }
 
+
+    settlement(settlestatus){
+      cy.get(this.requestwidget).click().wait(500).get('div.kt-menu__submenu').contains('Process Expenses').should('be.visible').click()
+      cy.xpath(this.search).click()
+      const storeexpid = Cypress.env('Expense-ID')
+      cy.get(this.searchinput).type(storeexpid)
+      cy.get(this.noexprecords).then($list => {
+
+        if ($list.length == 0) {
+          cy.log('Entered the Invalid Expense ID')
+        }
+        else if ($list.length > 0) {
+          cy.get(this.noexprecords).eq(0).click()
+        }
+
+      })
     
+    cy.get(this.settlementremarks).type(settlestatus)
+      const status = settlestatus.toLowerCase()
+      if (status == 'approve') {
+        cy.get(this.settlementapprove).click()
+      }
+      else if (status == 'reject') {
+        cy.get(this.settlementreject).click()
+        
+      }
+      else {
+        cy.log('Invalid Expense status')
+      }
+      cy.textofelement('[data-notify="title"]')
+      cy.get(this.expnotificationclose, { timeout: 5000 }).click()
+    }
   }
 
 export default Approvalspage;

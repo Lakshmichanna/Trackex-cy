@@ -6,9 +6,9 @@ import Flightpage from './Pages/Flightpage'
 
 describe('login', () => {
 
-  const lp = new Loginpage();
-  const rp = new Receiptpage();
-  const fp = new Flightpage();
+  const lp = new Loginpage()
+  const rp = new Receiptpage()
+  const fp = new Flightpage()
 
   beforeEach('passes', () => {
     // Getting the fixture file data into function 

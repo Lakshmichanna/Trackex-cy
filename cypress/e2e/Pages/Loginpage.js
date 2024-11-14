@@ -51,5 +51,10 @@ class Loginpage{
       cy.contains('Sign Out').should('be.visible').click()
 
     }
+userlogin(email,password){
+            this.launch()
+            this.login(email,password)
+            this.popupoverride()
+}
     }
     export default Loginpage;

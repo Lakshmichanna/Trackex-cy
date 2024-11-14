@@ -85,13 +85,23 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
 
   Cypress.Commands.add ('storevalue',(locator,valuename)=>{
     cy.get(locator).eq(0).then($field => {
-    const id = $field.text(); // Get the value of the input field
+    const id = $field.text(); // Get the value of the field
     
         cy.log(valuename +"-" + id)
         Cypress.env(valuename, id); 
 
     })
   })
+
+  
+Cypress.Commands.add('textofelement', (locator) => {
+  cy.get(locator).then((ele) => {
+      const text = ele.text();  // get the text from the element
+      cy.log(text);             // log the text
+      cy.wrap(text);            // wrap the text so it can be used in Cypress chain
+  });
+});
+
 // Attach file command with parameters
 /* fileName: The name of the file to upload.
 *  fileType: The MIME type of the file to upload.

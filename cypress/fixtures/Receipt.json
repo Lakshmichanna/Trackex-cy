@@ -1,7 +1,7 @@
 [
 {
   "expensetype": "Dinner",
-  "description": "Team luch",
+  "description": "Team outing",
   "country": "India",
   "cost": "1200",
   "paymenttype": "cash"
@@ -19,7 +19,7 @@
   "expensetype": "Car",
   "description": "Office",
   "country": "India",
-  "cost": "4500",
+  "cost": "3200",
   "paymenttype": "card"
   
 },
@@ -38,7 +38,46 @@
   "cost": "1200",
   "paymenttype": "card"
   
-}
+},
+{
+"expensetype": "Lunch",
+"description": "Team luch",
+"country": "India",
+"cost": "1200",
+"paymenttype": "cash"
 
+
+},
+{
+"expensetype": "Local_transport",
+"description": " stationary",
+"country": "India",
+"cost": "800",
+"paymenttype": "card"
+
+},{
+"expensetype": "Flight",
+"description": "Office",
+"country": "India",
+"cost": "4500",
+"paymenttype": "card"
+
+},
+{
+"expensetype": "Travel_Insurance",
+"description": "Office phone",
+"country": "India",
+"cost": "299",
+"paymenttype": "card"
+
+},
+{
+"expensetype": "ViseFee",
+"description": "Festival ",
+"country": "India",
+"cost": "1200",
+"paymenttype": "card"
+
+}
 
 ]

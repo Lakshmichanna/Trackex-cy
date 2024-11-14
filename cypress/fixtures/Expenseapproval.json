@@ -3,6 +3,8 @@
     "empmail": "emp@cl.com",
     "password": "Msr@123",
     "mngmail": "mng@cl.com",
-    "tripstatus": "Approve"
+    "accmail": "acc@cl.com",
+    "expstatus": "Approve",
+    "settlestatus": "Reject"
     
   }

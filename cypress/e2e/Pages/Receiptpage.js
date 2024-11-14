@@ -77,7 +77,8 @@ class Receiptpage {
         case 'car': // Enter the vendor and default selecting Fromdate & Todate field with expense date
         case 'flight':
         case 'outing':
-        case 'breakfast':
+        case 'hotel':
+        
         case 'fuel':
         case 'laundry':
         case 'local_transport':
@@ -92,6 +93,7 @@ class Receiptpage {
       // Meals template receipts
         case 'gifts':
         case 'lunch':
+        case 'breakfast':
         case 'visafee':
         case 'dinner':
         case 'entertainment':
@@ -115,7 +117,7 @@ class Receiptpage {
       }
 
     })
-    cy.wait(2000)
+    cy.wait(1000)
     cy.get(this.file).attachFile('bill.jpeg')
     //cy.upload_file('bill.jpeg','image/jpeg', this.file)
     cy.get(this.addreceiptbtn).click()
