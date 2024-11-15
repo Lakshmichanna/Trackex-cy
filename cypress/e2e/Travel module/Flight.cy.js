@@ -1,12 +1,12 @@
-import Loginpage from './Pages/Loginpage'
-import Flightpage from './Pages/Flightpage'
+import Loginpage from '../Pages/Loginpage'
+import Flightpage from '../Pages/Flightpage'
 describe('Flight 003 or 004 Bookings', () => {
 
     const lp = new Loginpage();
     const fp = new Flightpage();
   
   
- it ('passes', () => {
+ it ('Booking ', () => {
       // Getting the fixture file data into function 
       cy.fixture('Flightone').then((fl) => {
         lp.launch()

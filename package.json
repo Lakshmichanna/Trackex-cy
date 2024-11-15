@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "exp:test": "npx cypress run --spec '/Users/thinuser/Automation/TrackexV4-cy-orginal/cypress/e2e/Expense module/*.cy.js'",
+    "trav:test": "npx cypress run --spec '/Users/thinuser/Automation/TrackexV4-cy-orginal/cypress/e2e/Travel module/*.cy.js'"
+
   },
-  "author": "",
+  "author": "Lakshmi Channa",
   "license": "ISC",
   "dependencies": {
     "cypress": "^13.15.0"

@@ -1,10 +1,10 @@
 
 
-import Loginpage from './Pages/Loginpage';
-import Receiptpage from './Pages/Receiptpage';
-import Flightpage from './Pages/Flightpage'
+import Loginpage from '../Pages/Loginpage';
+import Receiptpage from '../Pages/Receiptpage';
+import Flightpage from '../Pages/Flightpage'
 
-describe('login', () => {
+describe('Receipts', () => {
 
   const lp = new Loginpage()
   const rp = new Receiptpage()
@@ -21,7 +21,7 @@ describe('login', () => {
     })
   })
 
-  it('receipt', () => {
+  it('Multiple Receipt Creation', () => {
 
     // Getting the fixture file into function 
     cy.fixture('Receipt').then((rpt) => {

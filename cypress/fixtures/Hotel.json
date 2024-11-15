@@ -1,17 +1,9 @@
 
-[
+
 {
    "place": "McCarran International Airport", 
    "checkindate": "12",
    "checkoutdate": "15", 
    "room": "1"
 
-},
-{
-    "place": "new york city", 
-    "checkindate": "12",
-    "checkoutdate": "15", 
-    "room": "1"
- 
- }
-]
+}

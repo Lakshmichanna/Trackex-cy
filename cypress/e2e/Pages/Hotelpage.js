@@ -27,6 +27,7 @@ class Hotelpage {
     popup = '.swal2-popup'
     popupok = '.swal2-confirm'
     gettripid = "h4[class='kt-portlet__head-title'] span span[class='kt-font-primary d-sm-inline-block d-block']"
+    approvaltripid = "(//p[contains(text(),'ID No.')])[1]//preceding-sibling::span"
 
 
 
@@ -70,9 +71,9 @@ class Hotelpage {
         }
         cy.get(this.searchbtn).click()
 
+    }
 
-
-
+hotelselect(){
 
         cy.url().should('include', '/hotelSearch');
         cy.elementIsPresent(this.resultloading).then((isPresent) => {
@@ -119,9 +120,12 @@ class Hotelpage {
         // Selecting the room in hotel
         cy.get('.price-btn>a').eq(1).scrollIntoView().click()
 
-        cy.get('#reason').type('Hotel reservation')
-        cy.get("input[value='Next Step']").click()
+      
+    }
+hotelbook(room){
 
+    cy.get('#reason').type('Hotel reservation')
+    cy.get("input[value='Next Step']").click()
         // Traveler details - Room 2 details 
         if (room == 2) {
             cy.get('input[type="radio"][value="MR"]').eq(1).click({ force: true })
@@ -164,6 +168,7 @@ class Hotelpage {
                         cy.log('Amount in ticket' + ticketamount)
                         const paymentamount = Cypress.env('amount')
                         expect(ticketamount).to.equal(paymentamount)
+                        cy.screenshot(trip.text())
                     });
                 })
 
@@ -177,14 +182,33 @@ class Hotelpage {
 
                         // Optionally log the popup message
                         cy.get('#swal2-content').invoke('text').then((popupMessage) => {
-                            cy.log(`Popup Message: ${popupMessage}`);
-                        });
+                            cy.log(`Popup Message: ${popupMessage}`)
+                        })
                     }
-                });
+                })
             }
         })
 
     }
 
+    hotelapproval(place, checkindate, checkoutdate, room){
+
+        this.hotelsearch(place, checkindate, checkoutdate, room)
+        this.hotelselect()
+        cy.wait(500)
+        cy.get('.alert').should('be.visible')
+        cy.wait(5000)
+        cy.get('.close').click()
+        cy.get('#Home').click()
+        // get the trip id from the activities table
+        cy.xpath(this.approvaltripid).then($field => {
+            const id = $field.text(); // Get the value of the input field
+
+            cy.log('Tripapprovalid:' + id)
+            Cypress.env('Tripapprovalid', id); // Set the value in Cypress.env
+
+        })
+        cy.wait(2000)
+    }
 
 } export default Hotelpage;

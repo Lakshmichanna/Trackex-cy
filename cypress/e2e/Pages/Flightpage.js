@@ -22,7 +22,7 @@ class Flightpage {
     failmsg = 'div.ng-star-inserted > .ng-star-inserted'
     results = '#Flightlists > :nth-child(1) > .kt-portlet > .kt-portlet__body'
     select = ':nth-child(1) > .kt-portlet > .kt-portlet__body > :nth-child(1) > .col-sm-4 > .listing-price > .price-btn > .btn'
-    grade2 = '.col-sm-12 > .d-block'
+    grade2 = 'div.row.flex-row.flex-nowrap.kt-scroll.upgrade-cards-row.forceScrolling > div:nth-child(2) > div'
     reason = '#reason'
     reviewnxtbtn = '.d-flex > .btn'
     tittle = "input[type='radio'][value='MR']"
@@ -117,8 +117,9 @@ class Flightpage {
 
                         // Optionally log the popup message
                         cy.get('#swal2-content').invoke('text').then((popupMessage) => {
-                            cy.log(`Popup Message: ${popupMessage}`);
-                        });
+                            
+                            cy.log(`Popup Message: ${popupMessage}`)
+                        })
                     }
                 });
             }
@@ -212,10 +213,10 @@ class Flightpage {
         // Waiting for the element to be visible
         if (service == 'USD') {
             cy.get(this.results, { timeout: 60000 }).should('be.visible')
-            cy.wait(2000)
+            cy.wait(1000)
 
             cy.get(this.select).click({ force: true })
-            cy.wait(2000)
+            cy.wait(5000)
             //upgrade option selecting if display
             cy.singleelement(this.grade2, 'selecting the 2nd upgrade option', 'No upgrade options displayed to select')
         }
@@ -241,7 +242,7 @@ class Flightpage {
   
           })*/
 
-
+          cy.get(this.reviewnxtbtn).should('be.visible').should('exist')
     }
 
 

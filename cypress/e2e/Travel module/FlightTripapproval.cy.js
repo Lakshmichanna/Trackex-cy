@@ -1,6 +1,6 @@
-import Loginpage from './Pages/Loginpage'
-import Flightpage from './Pages/Flightpage'
-import Approvalspage from './Pages/Approvalspage'
+import Loginpage from '../Pages/Loginpage'
+import Flightpage from '../Pages/Flightpage'
+import Approvalspage from '../Pages/Approvalspage'
 
 
 describe('Trip Approval', () => {

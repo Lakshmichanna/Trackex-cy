@@ -1,6 +1,6 @@
 
-import Loginpage from './Pages/Loginpage'
-import Hotelpage from './Pages/Hotelpage'
+import Loginpage from '../Pages/Loginpage'
+import Hotelpage from '../Pages/Hotelpage'
 import { beforeEach } from 'mocha'
 
 describe('Hotel Booking', () => {
@@ -22,9 +22,10 @@ describe('Hotel Booking', () => {
       // Room value must be 1 or 2
      
       hp.hotelsearch(hoteldata.place, hoteldata.checkindate, hoteldata.checkoutdate, hoteldata.room)
+      hp.hotelselect()
+      hp.hotelbook(hoteldata.room)
 
-  
-
+    
   })
   })
 

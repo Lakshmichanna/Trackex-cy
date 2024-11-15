@@ -64,7 +64,8 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
     cy.get('body').then(($body) => {
       if ($body.find(locator).length > 0) {
       
-        cy.log(msg1).click()
+        cy.log(msg1)
+        cy.get(locator).click()
        
       } else {
         cy.log(msg2);
@@ -75,10 +76,11 @@ Cypress.Commands.add('elementIsPresent', (selector) => {
 
   // getting the text from the element
   Cypress.Commands.add('gettext', (locator) =>{
-   cy.get(locator).then(function (ele) {
-    cy.log( + ele.text())
-    return ele.text()
-})
+    return cy.get(locator).then(($ele) => {
+      const text = $ele.text()
+      cy.log(`Text: ${text}`)
+      return text;  // Ensure this is within .then() for asynchronous handling
+   })
   })
 
   // Getting the value and storing in the environment variables 

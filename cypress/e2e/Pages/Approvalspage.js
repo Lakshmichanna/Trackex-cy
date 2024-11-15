@@ -58,6 +58,12 @@ class Approvalspage {
     }
 
     cy.wait(5000)
+    //cy.gettext('[data-notify="title"]')
+    cy.get('[data-notify="title"]').invoke('text').then((text) => {
+      // Use the text as needed
+      cy.log(`Message: ${text}`);
+      //expect(text).to.equal('Expected Text');
+    })
 
   }
   approveexpense(expensestatus) {

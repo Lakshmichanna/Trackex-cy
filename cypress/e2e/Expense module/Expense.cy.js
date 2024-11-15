@@ -1,7 +1,7 @@
-import Loginpage from './Pages/Loginpage'
-import Receiptpage from './Pages/Receiptpage'
-import Expensepage from './Pages/Expensepage'
-import Approvalspage from './Pages/Approvalspage'
+import Loginpage from '../Pages/Loginpage'
+import Receiptpage from '../Pages/Receiptpage'
+import Expensepage from '../Pages/Expensepage'
+import Approvalspage from '../Pages/Approvalspage'
 
 
 
@@ -16,7 +16,7 @@ describe('Expense Submit', () => {
 
 
   
-  it('Expense Submit with receipt list & manuall add',()=>{
+  it('Expense Submit with receipt list & manually add',()=>{
 
     cy.fixture('Login').then((approval) => {
 

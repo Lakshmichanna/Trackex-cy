@@ -1,5 +1,5 @@
-import Loginpage from './Pages/Loginpage';
-import Flightpage from './Pages/Flightpage'
+import Loginpage from '../Pages/Loginpage';
+import Flightpage from '../Pages/Flightpage'
 
 
 describe('Flight 003 or 004 Bookings', () => {
@@ -19,7 +19,7 @@ describe('Flight 003 or 004 Bookings', () => {
     })
   })
 
-  it.skip('Oneway',() =>{
+  it('Oneway',() =>{
 
     cy.fixture('Flightone').then((fl)=>{
 

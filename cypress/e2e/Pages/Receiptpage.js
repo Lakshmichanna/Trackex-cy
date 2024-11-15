@@ -94,7 +94,7 @@ class Receiptpage {
         case 'gifts':
         case 'lunch':
         case 'breakfast':
-        case 'visafee':
+        case 'visa fee':
         case 'dinner':
         case 'entertainment':
 
@@ -121,6 +121,8 @@ class Receiptpage {
     cy.get(this.file).attachFile('bill.jpeg')
     //cy.upload_file('bill.jpeg','image/jpeg', this.file)
     cy.get(this.addreceiptbtn).click()
+    cy.wait(1000)
+    cy.get('.alert > .close').click()
 
   }
 

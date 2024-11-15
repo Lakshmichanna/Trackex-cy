@@ -1,7 +1,7 @@
-import Loginpage from './Pages/Loginpage'
-import Receiptpage from './Pages/Receiptpage'
-import Expensepage from './Pages/Expensepage'
-import Approvalspage from './Pages/Approvalspage'
+import Loginpage from '../Pages/Loginpage'
+import Receiptpage from '../Pages/Receiptpage'
+import Expensepage from '../Pages/Expensepage'
+import Approvalspage from '../Pages/Approvalspage'
 
 
 
